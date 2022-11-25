@@ -1,0 +1,36 @@
+USE quilmesmicasa;
+
+/* Script de creación de funcion: fn_cantidad_organizaciones */
+
+DELIMITER $$
+CREATE FUNCTION fn_cantidad_organizaciones (param_actividad VARCHAR(50))
+RETURNS INT
+READS SQL DATA
+    BEGIN   
+        DECLARE cant_organizaciones INT;
+        SELECT COUNT(p.idactividad_activ) INTO cant_organizaciones
+            FROM organizaciones v 
+                JOIN actividades p 
+                ON (v.idactividad_activ = p.idactividad_activ)
+            WHERE actividad_activ = param_actividad;
+        RETURN cant_organizaciones;
+    END
+$$
+DELIMITER ;
+
+SELECT fn_cantidad_organizaciones("Recorrida calle");
+
+/* Script de creación de funcion: fn_datos_voluntario */
+
+delimiter ##
+CREATE FUNCTION fn_datos_voluntario (datos_voluntario INT) 
+RETURNS VARCHAR(200)
+READS SQL DATA
+BEGIN
+    DECLARE datos VARCHAR(200); 
+SELECT CONCAT('Nombre: ', name_vol, ' ', surname_vol, ' - Profesion: ', profession_vol) INTO datos
+FROM voluntarios 
+WHERE id_vol = datos_voluntario;
+    RETURN datos;
+END##
+delimiter ;
