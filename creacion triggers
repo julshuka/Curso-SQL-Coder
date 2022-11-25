@@ -1,0 +1,48 @@
+USE quilmesmicasa;
+
+USE quilmesmicasa;
+DROP TABLE IF EXISTS auditoria_1;
+CREATE TABLE IF NOT EXISTS auditoria_1 (
+id_au1 INT AUTO_INCREMENT,
+name_don TEXT(30) NOT NULL,
+surname_don TEXT(30) NOT NULL,
+rubro_don TEXT(20) NOT NULL,
+nombre_de_accion VARCHAR(10),
+nombre_tabla VARCHAR(50),
+usuario VARCHAR(100),
+fecha_upd_ins_del DATE,
+PRIMARY KEY (id_au1));
+
+DROP TABLE IF EXISTS auditoria_2;
+CREATE TABLE IF NOT EXISTS auditoria_2 (
+id_au2 INT AUTO_INCREMENT,
+nombre_de_accion VARCHAR(10),
+nombre_tabla VARCHAR(50),
+usuario VARCHAR(100),
+fecha_upd_ins_del DATE,
+PRIMARY KEY (id_au2));
+
+/*trg_audit_1: Guarda los datos anteriores de nombre, apellido y rubro cuando es actualizada la tabla donantes*/
+
+DELIMITER //
+CREATE TRIGGER trg_audit_1 BEFORE UPDATE ON quilmesmicasa.donantes
+FOR EACH ROW 
+BEGIN
+INSERT INTO auditoria_1 
+VALUES (NULL, CONCAT('CAMPO ANTERIOR: ', OLD.name_don,' / CAMPO NUEVO: ',NEW.name_don),
+CONCAT('CAMPO ANTERIOR: ',OLD.surname_don,'/ CAMPO NUEVO: ',NEW.surname_don),
+NEW.rubro_don, 'UPDATE', 'donantes', CURRENT_USER(), NOW());
+END//
+DELIMITER ;
+
+/*trg_audit_2: Guarda los registros de cuando se insertó un nuevo donante a la base de datos de la tabla donantes*/
+
+DELIMITER //
+CREATE TRIGGER trg_audit_2 AFTER INSERT ON quilmesmicasa.donantes
+FOR EACH ROW 
+BEGIN
+INSERT INTO auditoria_2  
+VALUES ( NULL,'INSERT','donantes',CURRENT_USER(),NOW());
+
+END//
+DELIMITER ;
