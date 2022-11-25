@@ -1,0 +1,144 @@
+/* Script de creación de tablas en SQL para el curso de SQL en Coderhouse comision 34965 - Primera entrega 22/10/22 */
+
+/* Creacion BBDD */
+
+CREATE DATABASE IF NOT EXISTS quilmesmicasa;
+
+/* Uso de la BBDD creada */
+
+USE quilmesmicasa;
+
+/* Tabla que detalla las actividades que estan a disposicion en el Programa Solidario */
+        
+CREATE TABLE IF NOT EXISTS actividades (
+    idactividad_activ INT AUTO_INCREMENT NOT NULL,
+    actividad_activ VARCHAR(90) NOT NULL,
+    dia_activ VARCHAR(40) NOT NULL,
+    horario_activ TIME NOT NULL,
+    espacio_activ VARCHAR(40) NOT NULL,
+    PRIMARY KEY(idactividad_activ)
+); 
+
+/* Tabla de dimensión que indica el tipo de direccion (si es donante, voluntario, asistente u organizacion)/* 
+/* Toma valores de 1 a 4*/
+
+CREATE TABLE IF NOT EXISTS tipo_de_direccion (
+    type_adr TINYINT NOT NULL,
+    type_dir VARCHAR(30) NOT NULL,
+    PRIMARY KEY(type_adr)
+);
+
+/* Tabla de dimensión que contiene datos sobre direcciones de voluntarios, donantes, asistentes y organizaciones */
+
+CREATE TABLE IF NOT EXISTS direcciones (
+    id_adr INT AUTO_INCREMENT NOT NULL,
+    type_adr TINYINT NOT NULL,
+    provincia_adr TEXT(20) NOT NULL,
+    localidad_adr VARCHAR(30) NOT NULL,
+    calle_adr VARCHAR(30) NOT NULL,
+    numero_adr VARCHAR(7) NOT NULL,
+    comments_adr VARCHAR(200) NULL,
+    PRIMARY KEY(id_adr),
+    FOREIGN KEY(type_adr) REFERENCES tipo_de_direccion(type_adr)
+);
+
+/* Tabla de dimensión que contiene datos sobre organizaciones vinculadas al programa quilmes mi casa */
+
+CREATE TABLE IF NOT EXISTS organizaciones (
+    id_org INT AUTO_INCREMENT NOT NULL,
+    id_adr INT NOT NULL,
+    idactividad_activ INT NOT NULL,
+    name_org TEXT(30) NOT NULL,
+    contact_org TEXT(30) NOT NULL,
+    objetivo_org TEXT(30) NULL,
+    vinculo_org VARCHAR(200) NOT NULL,
+    comments_org VARCHAR(200) NULL,
+    PRIMARY KEY(id_org),
+    FOREIGN KEY(id_adr) REFERENCES direcciones(id_adr),
+    FOREIGN KEY(idactividad_activ) REFERENCES actividades(idactividad_activ)
+);
+
+/* tabla que indica el tipo de donación (si es ropa, alimento fresco, alimento no perecedero, 
+mobiliario, dinero, inmuebles, servicios profesionales, otros). Toma valores de 1 a 8 */
+
+CREATE TABLE IF NOT EXISTS tipo_de_donacion (
+    type_don INT NOT NULL,
+    donation_type VARCHAR(60) NOT NULL,
+    PRIMARY KEY(type_don)
+);
+
+/* Tabla de dimensión que enumera los donantes que participan del Programa Solidario, indicando datos de los mismos */
+
+CREATE TABLE IF NOT EXISTS donantes (
+    id_don INT AUTO_INCREMENT NOT NULL,
+    id_adr INT NOT NULL,
+    idactividad_activ INT NOT NULL,
+    type_don INT NOT NULL,
+    name_don TEXT(30) NOT NULL,
+    surname_don TEXT(30) NOT NULL,
+    age_don INT NULL,
+    profesion_don TEXT(20) NOT NULL,
+    compania_don VARCHAR(30) NOT NULL,
+    rubro_don TEXT(20) NOT NULL,
+    date_don DATE NOT NULL,
+    comments_don VARCHAR(200) NULL,
+    PRIMARY KEY(id_don),
+    FOREIGN KEY(id_adr) REFERENCES direcciones(id_adr),
+    FOREIGN KEY(type_don) REFERENCES tipo_de_donacion(type_don),
+    FOREIGN KEY(idactividad_activ) REFERENCES actividades(idactividad_activ)
+);
+
+/* Tabla que indica los voluntarios con los que cuenta el Programa Solidario */
+
+CREATE TABLE IF NOT EXISTS voluntarios (
+    id_vol INT AUTO_INCREMENT NOT NULL,
+    id_adr INT NOT NULL,
+    idactividad_activ INT NOT NULL,
+    name_vol TEXT(20) NOT NULL,
+    surname_vol TEXT(20) NOT NULL,
+    age_vol INT NULL,
+    profession_vol TEXT(20) NULL,
+    date_vol DATE NOT NULL,
+    condcutor_vol BOOLEAN NOT NULL,
+    dispo_vol VARCHAR(30) NOT NULL,
+    comments_vol VARCHAR (200) NULL,
+    PRIMARY KEY(id_vol),
+    FOREIGN KEY(id_adr) REFERENCES direcciones(id_adr),
+    FOREIGN KEY(idactividad_activ) REFERENCES actividades(idactividad_activ)
+);
+
+/* Tabla que indica el grupo familiar al que pertenece el asistente */
+        
+CREATE TABLE IF NOT EXISTS grupo_familiar (
+    famgroup_assist INT AUTO_INCREMENT NOT NULL,
+    name_group VARCHAR(20) NOT NULL,
+    PRIMARY KEY(famgroup_assist)
+); 
+
+/* Tabla que indica las personas que reciben asistencia por parte del Programa Solidario */
+        
+CREATE TABLE IF NOT EXISTS asistentes (
+    id_assist INT AUTO_INCREMENT NOT NULL,
+    id_adr INT NOT NULL,
+    famgroup_assist INT NULL,
+    idactividad_activ INT NOT NULL,
+    name_assist TEXT(20) NOT NULL,
+    surname_assist TEXT(20) NOT NULL,
+    age_assist INT NOT NULL,
+    PRIMARY KEY(id_assist),
+    FOREIGN KEY(id_adr) REFERENCES direcciones(id_adr),
+    FOREIGN KEY(famgroup_assist) REFERENCES grupo_familiar(famgroup_assist),
+    FOREIGN KEY(idactividad_activ) REFERENCES actividades(idactividad_activ)
+); 
+
+/* Tabla que indica los pedidos que realizan los asistentes al Programa Solidario Solidario */
+        
+CREATE TABLE IF NOT EXISTS pedidos (
+    id_ped INT AUTO_INCREMENT NOT NULL,
+    id_assist INT NOT NULL,
+    date_ped DATE NOT NULL,
+    objeto_ped VARCHAR(20) NOT NULL,
+    cant_ped DECIMAL(5,2) NOT NULL,
+    unid_ped VARCHAR(20) NOT NULL,
+    PRIMARY KEY(id_ped)
+); 
