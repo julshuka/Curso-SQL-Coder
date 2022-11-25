@@ -1,0 +1,20 @@
+/*Se crea el usuario con atributos para insertar, actualizar y leer las tablas*/
+create user if not exists 'responsable01'@'localhost' identified by 'password123456' ;
+
+/*Se crea el usuario con permiso de lectura*/
+create user if not exists 'sololectura01'@'localhost' identified by 'password234567' ;
+
+/*Se crean los permisos de lectura para el usuario sololectura*/
+grant select on quilmesmicasa.actividades to sololectura01@localhost; 
+grant select on quilmesmicasa.tipo_de_direccion to sololectura01@localhost; 
+grant select on quilmesmicasa.direcciones to sololectura01@localhost; 
+grant select on quilmesmicasa.organizaciones to sololectura01@localhost; 
+grant select on quilmesmicasa.tipo_de_donacion to sololectura01@localhost; 
+grant select on quilmesmicasa.donantes to sololectura01@localhost; 
+grant select on quilmesmicasa.voluntarios to sololectura01@localhost; 
+grant select on quilmesmicasa.grupo_familiar to sololectura01@localhost; 
+grant select on quilmesmicasa.asistentes to sololectura01@localhost; 
+grant select on quilmesmicasa.pedidos to sololectura01@localhost; 
+
+/*Se crean permisos de lectura y escritura para el usuario responsable*/
+grant select, insert, update on quilmesmicasa.* to responsable01@localhost; 
