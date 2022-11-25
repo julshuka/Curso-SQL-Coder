@@ -1,0 +1,38 @@
+USE quilmesmicasa;
+
+/*Se actualiza la profesion de un voluntario y se confirman los cambios*/
+SELECT * FROM voluntarios;
+START TRANSACTION;
+UPDATE voluntarios 
+SET profession_vol = 'Plomero'
+WHERE id_vol = 2; 
+COMMIT;
+
+SELECT * FROM voluntarios;
+
+/*Se elimina un voluntario y se confirman los cambios*/
+SELECT * FROM voluntarios;
+START TRANSACTION;
+UPDATE voluntarios 
+DELETE ROW
+WHERE id_vol = 3; 
+COMMIT;
+
+SELECT * FROM voluntarios;
+
+/*Se insertan 8 nuevas lineas en la Tabla grupo_familiar y se insertan Savepoints*/
+SELECT * FROM grupo_famliar;
+START TRANSACTION ;
+INSERT INTO grupo_famliar VALUES (11,'Otamendi');
+INSERT INTO grupo_famliar VALUES (12,'Alvarez');
+INSERT INTO grupo_famliar VALUES (13,'Savino');
+INSERT INTO grupo_famliar VALUES (14,'Nesi');
+SAVEPOINT lote_1;
+INSERT INTO grupo_famliar VALUES (15,'Heier');
+INSERT INTO grupo_famliar VALUES (16,'Ferreyra');
+INSERT INTO grupo_famliar VALUES (17,'Dono');
+INSERT INTO grupo_famliar VALUES (18,'Hernandez');
+SAVEPOINT lote_2;
+ROLLBACK TO lote_1;
+RELEASE (SAVEPOINT lote_1);
+COMMIT;
