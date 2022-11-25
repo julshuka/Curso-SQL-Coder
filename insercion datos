@@ -1,0 +1,178 @@
+USE quilmesmicasa;
+
+INSERT INTO actividades VALUES
+(1, 'Taller Niños', 'martes', '17:00', 'Olavarria 331'),
+(2, 'Taller Madres', 'martes', '17:00', 'Aula 2'),
+(3, 'Espacio A2', 'viernes', '17:00', 'Patio hogar'),
+(4, 'Recorrida Calle', 'lunes', '19:30', 'Calle'),
+(5, 'Busqueda Donaciones', 'todos los dias', '18:00', 'Calle'),
+(6, 'Cocina', 'lunes', '16:00', 'cocina'),
+(7, 'Ropero', 'miercoles', '17:00', 'Olavarria 331'),
+(8, 'Clas donaciones', 'todos los dias', '17:00', 'Olavarria 331'),
+(9, 'Inventario Almacen', 'todos los dias', '18:00', 'Despensa'),
+(10, 'Busqueda', 'sabados', '8:00', 'cocina'),
+(11, 'Cena Anual', 'viernes', '20:30', 'SUM'),
+(12, 'Peña anual', 'viernes', '20:00', 'SUM'),
+(13, 'Cena Fin de año', '31 de dic', '19:00', 'SUM'),
+(14, 'Repartida Utiles', 'todos los dias', '18:00', 'Aula 2'),
+(15, 'Cajas Navideñas', 'todos los dias', '9:00', 'Aula 2'),
+(16, 'Dia del niño', 'todos los dias', '17:00', 'Patio Hogar');
+
+INSERT INTO tipo_de_direccion VALUES
+(1, 'donante'),
+(2, 'voluntario'),
+(3, 'asistente'),
+(4, 'organizacion');
+
+INSERT INTO direcciones VALUES
+(1, 4, 'Buenos Aires', 'Quilmes', 'Calle 1', 1111, NULL),
+(2, 4, 'Buenos Aires', 'Florencio Varela', 'Calle 2', 2222, 'casa azul'),
+(3, 4, 'Buenos Aires', 'Quilmes', 'Calle 3', 3333, NULL),
+(4, 4, 'Buenos Aires', 'Quilmes', 'Calle 4', 4444, NULL),
+(5, 4, 'Buenos Aires', 'Florencio Varela', 'Calle 5', 5555, NULL),
+(6, 4, 'Buenos Aires', 'Quilmes', 'Calle 6', 6666, NULL),
+(7, 4, 'Buenos Aires', 'Quilmes', 'Calle 7', 7777, 'mitad de cuadra'),
+(8, 4, 'Buenos Aires', 'Quilmes', 'Calle 8', 8888, NULL),
+(9, 4, 'Buenos Aires', 'Quilmes', 'Calle 9', 9999, NULL),
+(10, 4, 'Buenos Aires', 'Quilmes', 'Calle 10', 123, NULL),
+(11, 4, 'Buenos Aires', 'Quilmes', 'Calle 11', 321, NULL),
+(12, 1, 'Buenos Aires', 'Lanus', 'Calle 1', 1234, NULL),
+(13, 1, 'Buenos Aires', 'Lomas de Zamora', 'Calle 2', 5678, NULL),
+(14, 1, 'Buenos Aires', 'Capital Federal', 'Calle 3', 9101, NULL),
+(15, 1, 'Buenos Aires', 'San Isidro', 'Calle 4', 1213, 'Reja al fondo'),
+(16, 1, 'Buenos Aires', 'Berazategui', 'Calle 5', 1415, NULL),
+(17, 1, 'Buenos Aires', 'La Plata', 'Calle 6', 1617, NULL),
+(18, 1, 'Buenos Aires', 'Avellaneda', 'Calle 7', 1819, NULL),
+(19, 1, 'Buenos Aires', 'Quilmes', 'Calle 8', 2021, NULL),
+(20, 1, 'Buenos Aires', 'Quilmes', 'Calle 9', 2223, NULL),
+(21, 1, 'Buenos Aires', 'Quilmes', 'Calle 10', 2425, NULL),
+(22, 2, 'Buenos Aires', 'Quilmes', 'Calle 1', 2627, NULL),
+(23, 2, 'Buenos Aires', 'Lomas de Zamora', 'Calle 2', 2829, NULL),
+(24, 2, 'Buenos Aires', 'Quilmes', 'Calle 3', 3031, NULL),
+(25, 2, 'Buenos Aires', 'Quilmes', 'Calle 4', 3233, NULL),
+(26, 2, 'Buenos Aires', 'Avellaneda', 'Calle 5', 3435, 'Puerta Verde'),
+(27, 2, 'Buenos Aires', 'Quilmes', 'Calle 6', 3637, NULL),
+(28, 2, 'Buenos Aires', 'Quilmes', 'Calle 7', 3839, NULL),
+(29, 2, 'Buenos Aires', 'Berazategui', 'Calle 8', 4041, NULL),
+(30, 2, 'Buenos Aires', 'Quilmes', 'Calle 9', 4243, NULL),
+(31, 2, 'Buenos Aires', 'Quilmes', 'Calle 10', 4445, NULL),
+(32, 3, 'Buenos Aires', 'Quilmes', 'Calle 1', 4647, NULL),
+(33, 3, 'Buenos Aires', 'Quilmes', 'Calle 2', 4849, NULL),
+(34, 3, 'Buenos Aires', 'Quilmes', 'Calle 3', 5051, NULL),
+(35, 3, 'Buenos Aires', 'Quilmes', 'Calle 4', 5253, NULL),
+(36, 3, 'Buenos Aires', 'Quilmes', 'Calle 5', 5455, NULL),
+(37, 3, 'Buenos Aires', 'Quilmes', 'Calle 6', 5657, NULL),
+(38, 3, 'Buenos Aires', 'Quilmes', 'Calle 7', 5859, NULL),
+(39, 3, 'Buenos Aires', 'Quilmes', 'Calle 8', 6061, NULL),
+(40, 3, 'Buenos Aires', 'Quilmes', 'Calle 9', 6263, NULL),
+(41, 3, 'Buenos Aires', 'Berazategui', 'Calle 10', 6465, NULL),
+(42, 3, 'Buenos Aires', 'Quilmes', 'Calle 11', 6667, 'Casi esquina'),
+(43, 3, 'Buenos Aires', 'Quilmes', 'Calle 12', 6869, NULL),
+(44, 3, 'Buenos Aires', 'Quilmes', 'Calle 13', 7071, NULL),
+(45, 3, 'Buenos Aires', 'Quilmes', 'Calle 14', 7273, NULL),
+(46, 3, 'Buenos Aires', 'Quilmes', 'Calle 15', 7475, NULL);
+
+INSERT INTO organizaciones VALUES
+(1, 1, 10, 'merendero julio', 'Julio', 'atencion de merienda en el barrio', 'subdonamos verdura', NULL),
+(2, 2, 8, 'comedor varela', 'Carlos', 'Almuerzo y cena en el barrio', 'subdonamos verdura y ropa', NULL),
+(3, 3, 7, 'merendero bernal', 'Ester', 'atencion de merienda en el barrio', 'subdonamos muebles', 'Si no esta Ester hablar con Juana'),
+(4, 4, 10, 'taza de leche quilmes oeste', 'Juana', 'atencion de merienda en el barrio', 'subdonamos verdura', NULL),
+(5, 5, 10, 'merendero varela', 'Camila', 'atencion de merienda en el barrio', 'subdonamos verdura', NULL),
+(6, 6, 7, 'comedor solano', 'Franco', 'Almuerzo y cena en el barrio', 'subdonamos verdura', 'Continuar conociendo la organización'),
+(7, 7, 10, 'comedor don bosco', 'Elias', 'Almuerzo y cena en el barrio', 'subdonamos verdura', NULL),
+(8, 8, 10, 'merendero rio quilmes', 'Rodrigo', 'atencion de merienda en el barrio', 'subdonamos verdura', NULL),
+(9, 9, 10, 'comedor rio quilmes', 'Marta', 'Almuerzo y cena en el barrio', 'subdonamos verdura', NULL),
+(10, 10, 10, 'hogar niños quilmes', 'Veronica', 'hogar niños judicializados', 'subdonamos alimento Fresco', NULL),
+(11, 11, 10, 'hogar niños quilmes oeste', 'Camila', 'hogar niños judicializados', 'subdonamos facturas', NULL);
+
+INSERT INTO tipo_de_donacion VALUES
+(1, 'Ropa'),
+(2, 'Alimento Fresco'),
+(3, 'Alimento No Perecedero'),
+(4, 'Mobiliario'),
+(5, 'Dinero'),
+(6, 'Inmuebles'),
+(7, 'Servicios Profesionales'),
+(8, 'Otros');
+
+INSERT INTO donantes VALUES
+(1, 12, 16, 1, 'Juan', 'Sanchez', 45, 'Abogado', 'Particular', 'Servicios', '2015-05-15', 'Hablar por la noche'),
+(2, 13, 15, 2, 'Carlos', 'Perez', NULL, 'Administrativo', 'Quilmes', 'Bebidas', '2019-11-30', NULL),
+(3, 14, 14, 3, 'Olga', 'Rodriguez', 31, 'Adminstrativo', 'Danone', 'Alimentos', '2022-12-30', NULL),
+(4, 15, 13, 4, 'Mirta', 'Diaz', 25, 'Administrativo', 'Tavella', 'Logistica', '2018-10-20', NULL),
+(5, 16, 12, 5, 'Emilio', 'Villalba', 74, 'Medico', 'Particular', 'Servicios', '2020-6-18', NULL),
+(6, 17, 11, 6, 'Juana', 'Garcia', 55, 'Administrativo', 'Ochippinti', 'Ferreteria', '2014-11-25', NULL),
+(7, 18, 10, 7, 'Clara', 'Mas', 38, 'Administrativo', 'Maga', 'Farmacia', '2012-09-03', NULL),
+(8, 19, 9, 8, 'Sofia', 'Torres', 47, 'Administrativo', 'Ocular', 'Optica', '2011-04-04', NULL),
+(9, 20, 8, 4, 'Marcelo', 'Leguizamon', 51, 'Administrativo', '3 Vacas', 'Carniceria', '2019-03-15', NULL),
+(10, 21, 8, 1, 'Fabian', 'Campos', 29, 'Ingeniero', 'Particular', 'Servicios', '2013-02-18', NULL);
+
+INSERT INTO voluntarios VALUES
+(1, 22, 10, 'Juan', 'Agnoli', 50, 'Mecanico', '2012-01-04', 1, 'lun, mar, juev desde 18hs', NULL),
+(2, 23, 2, 'Paco', 'Parreira', 60, 'Terapeuta Ocupacional', '2013-02-05', 0, 'jueves a las 15hs', NULL),
+(3, 24, 3, 'Pedro', 'Perez', 70, 'Farmaceutico', '2014-03-06', 1, 'miercoles 19hs', NULL),
+(4, 25, 4, 'Alfonso', 'Mossat', NULL, NULL, '2015-04-07', 0, 'todos los dias post 18hs', NULL),
+(5, 26, 5, 'Atilio', 'Shuka', 30, 'Vendedor', '2016-05-06', 1, 'sabados por la mañana', NULL),
+(6, 27, 6, 'Clarisa', 'Belmonte', 20, 'Administrativo', '2017-06-09', 0, 'sabados por la tarde', NULL),
+(7, 28, 7, 'Marisa', 'Castro', 18, 'Estudiante', '2018-07-10', 1, 'lunes a sabados 17 a 18hs', NULL),
+(8, 29, 8, 'Cintia', 'Heranndez', 15, 'Estudiante', '2019-08-11', 0, 'viernes 15hs en adelante', 'Habla ingles'),
+(9, 30, 9, 'Marianela', 'Silvermann', 25, 'Fotografo', '2020-09-12', 1, 'jueves 17hs', NULL),
+(10, 31, 10, 'Luz', 'Pratt', 50, 'Mecanico', '2021-10-13', 1, 'lunes 17hs', NULL);
+
+INSERT INTO grupo_familiar VALUES
+(1, 'Rodriguez'),
+(2, 'Perez'),
+(3, 'Villarino'),
+(4, 'Borquez'),
+(5, 'Alvarez'),
+(6, 'Saracho'),
+(7, 'Aguero'),
+(8, 'Fernandez'),
+(9, 'Claros'),
+(10, 'Sinatra');
+
+INSERT INTO asistentes VALUES
+(1, 32, 10, 1, 'Julian', 'Sinatra', 7),
+(2, 33, 9, 2, 'Andres', 'Claros', 8),
+(3, 34, 8, 1, 'Mariel', 'Fernandez', 32),
+(4, 35, 8, 2, 'Elian', 'Fernandez', 15),
+(5, 36, NULL, 1, 'Lara', 'Ojeda', 50),
+(6, 37, NULL, 2, 'Violeta', 'Shevliakova', 60),
+(7, 38, 6, 4, 'Georgina', 'Saracho', 25),
+(8, 39, 5, 1, 'Soledad', 'Alvarez', 22),
+(9, 40, 5, 2, 'Vilma', 'Alvarez', 20),
+(10, 41, 5, 4, 'Alicia', 'Alvarez', 32),
+(11, 42, NULL, 3, 'Sergio', 'Bachmann', 80),
+(12, 43, NULL, 3, 'Alberto', 'Tobarias', 75),
+(13, 44, 9, 3, 'Olga', 'Claros', 14),
+(14, 45, NULL, 1, 'Claudio', 'Eguren', 11),
+(15, 46, 3, 1, 'Alejandra', 'Villarino', 55);
+
+INSERT INTO pedidos VALUES
+(1, 7, '2022-08-07', 'Medias', 3, 'PAR'),
+(2, 5, '2022-08-08', 'aceite', 1.5, 'Lt'),
+(3, 4, '2022-04-05', 'Manzana', 2, 'KG'),
+(4, 2, '2022-09-10', 'ibuprofeno', 1, 'UN'),
+(5, 4, '2022-11-15', 'colchon', 1, 'UN');
+
+
+
+
+
+
+
+
+
+
+
+
+SELECT * FROM actividades;
+SELECT * FROM asistentes;
+SELECT * FROM pedidos;
+SELECT * FROM grupo_familiar;
+SELECT * FROM voluntarios;
+SELECT * FROM donantes;
+SELECT * FROM tipo_de_donacion;
+SELECT * FROM organizaciones;
+SELECT * FROM direcciones;
+SELECT * FROM tipo_de_direccion;
