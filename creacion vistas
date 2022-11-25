@@ -1,0 +1,61 @@
+USE quilmesmicasa;
+
+/* Script de creación de Vista: Voluntarios por Actividad */
+
+CREATE OR REPLACE VIEW voluntarios_por_actividad AS
+     SELECT p.idactividad_activ,p.actividad_activ, COUNT(p.idactividad_activ) AS Voluntarios
+     FROM voluntarios v JOIN actividades p ON (v.idactividad_activ = p.idactividad_activ)
+     GROUP BY p.idactividad_activ
+     ORDER BY p.idactividad_activ DESC;
+
+/* Script de uso de Vista: Voluntarios por Actividad */
+
+SELECT * FROM quilmesmicasa.voluntarios_por_actividad;
+
+/* Script de creación de Vista: Localidad de donantes*/
+
+CREATE OR REPLACE VIEW localidad_donantes AS
+     SELECT p.id_adr,p.localidad_adr, COUNT(p.localidad_adr) AS Localidad
+     FROM direcciones v JOIN donantes p ON (v.id_adr = p.id_adr)
+     GROUP BY p.localidad_adr
+     ORDER BY Localidad DESC;
+
+/* Script de uso de Vista: Localidad de donantes */
+
+SELECT * FROM quilmesmicasa.localidad_donantes;
+
+/* Script de creación de Vista: Asistente que genera mayor cantidad de pedidos*/
+
+CREATE OR REPLACE VIEW asistente_pedidos AS
+     SELECT p.name_assist,p.surname_assist, COUNT(p.id_assist) AS Pedidos
+     FROM pedidos v JOIN asistentes p ON (v.id_assist = p.id_assist)
+     GROUP BY p.surname_assist
+     ORDER BY Pedidos DESC
+     LIMIT 1;
+
+/* Script de uso de Vista: asistente_pedidos */
+
+SELECT * FROM quilmesmicasa.asistente_pedidos;
+
+/* Script de creación de Vista: Edad promedio de los asistentes*/
+
+CREATE OR REPLACE VIEW edad_asistentes AS
+     SELECT AVG(age_assist) As Edad_Promedio_Asistentes
+     FROM asistentes;
+
+/* Script de uso de Vista: edad_asistentes */
+
+SELECT * FROM quilmesmicasa.edad_asistentes;
+
+/* Script de creación de Vista: Organizaciones por actividad*/
+
+CREATE OR REPLACE VIEW organizaciones_por_actividad AS
+     SELECT p.idactividad_activ,p.actividad_activ, COUNT(p.idactividad_activ) AS Organizaciones
+     FROM organizaciones v JOIN actividades p ON (v.idactividad_activ = p.idactividad_activ)
+     GROUP BY p.idactividad_activ
+     ORDER BY p.idactividad_activ DESC
+     LIMIT 3;
+
+/* Script de uso de Vista: organizaciones_por_actividad */
+
+SELECT * FROM quilmesmicasa.organizaciones_por_actividad;
