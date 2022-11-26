@@ -30,3 +30,19 @@ END //
 DELIMITER ;
 
 CALL st_voluntarios_por_actividad ('Busqueda, preparacion y entrega verduras');
+
+/* Script de creación de SP: st_datos_asistente */
+
+DELIMITER //
+
+CREATE PROCEDURE st_datos_asistente (IN busqueda_datos VARCHAR(50))
+BEGIN
+SELECT * FROM asistentes
+    WHERE id_assist LIKE busqueda_datos;
+END //
+
+DELIMITER ;
+
+/* SE INTENTA BUSCAR DATOS DEL ASISTENTE POR SU ID   */
+
+CALL st_datos_asistente ('2');
