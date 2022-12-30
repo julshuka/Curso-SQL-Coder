@@ -1,21 +1,5 @@
 USE quilmesmicasa;
 
-/* Script de creación de SP: st_falta_voluntarios */
-
-DELIMITER //
-CREATE PROCEDURE  st_falta_voluntarios ()
-BEGIN
-     SELECT COUNT(p.idactividad_activ) 
-     FROM voluntarios v 
-     JOIN actividades p 
-     ON (v.idactividad_activ = p.idactividad_activ)
-     WHERE COUNT(p.idactividad_activ) < 3;
-END
-//
-DELIMITER ;
-
-CALL st_falta_voluntarios ();
-
 /* Script de creación de SP: st_voluntarios_por_actividad */
 
 DELIMITER //
@@ -29,7 +13,7 @@ WHERE entrada = actividad_activ;
 END //
 DELIMITER ;
 
-CALL st_voluntarios_por_actividad ('Busqueda, preparacion y entrega verduras');
+CALL st_voluntarios_por_actividad ('Ropero');
 
 /* Script de creación de SP: st_datos_asistente */
 
