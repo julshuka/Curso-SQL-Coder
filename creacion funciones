@@ -34,3 +34,5 @@ WHERE id_vol = datos_voluntario;
     RETURN datos;
 END##
 delimiter ;
+
+SELECT fn_datos_voluntario("1");
