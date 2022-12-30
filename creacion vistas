@@ -16,7 +16,7 @@ SELECT * FROM quilmesmicasa.voluntarios_por_actividad;
 
 CREATE OR REPLACE VIEW localidad_donantes AS
      SELECT p.id_adr,p.localidad_adr, COUNT(p.localidad_adr) AS Localidad
-     FROM direcciones v JOIN donantes p ON (v.id_adr = p.id_adr)
+     FROM direcciones p JOIN donantes v ON (v.id_adr = p.id_adr)
      GROUP BY p.localidad_adr
      ORDER BY Localidad DESC;
 
